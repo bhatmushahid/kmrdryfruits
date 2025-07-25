@@ -3,9 +3,426 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KMR Dry Fruits</title>
+    <title>KMR Dry Fruits - Premium Dry Fruits from Kashmir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f5f0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #8b4513;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        
+        .slider-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .slider-img.active {
+            opacity: 1;
+        }
+        
+        .order-banner {
+            background-color: #ffd700;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .order-banner h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #8b4513;
+        }
+        
+        .order-banner p {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .products {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #8b4513;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: #ffd700;
+            margin: 0.5rem auto;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #8b4513;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        
+        .about {
+            padding: 3rem 0;
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        footer {
+            background-color: #8b4513;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+        
+        .footer-column p, .footer-column address {
+            margin-bottom: 0.8rem;
+            font-style: normal;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #ffd700;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 1rem;
+            }
+            
+            .slider {
+                height: 300px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
-<body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <img src="index.png" alt="KMR Dry Fruits" style="max-width: 100%; max-height: 100%;">
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">KMR Dry Fruits</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section id="home" class="slider-section">
+            <div class="slider">
+                <img src="index.png" alt="KMR Dry Fruits" class="slider-img active">
+                <img src="home.png" alt="Premium Dry Fruits" class="slider-img">
+            </div>
+            
+            <div class="container">
+                <div class="order-banner">
+                    <h2>For Orders DM: 8920861252</h2>
+                    <p>Free Home Delivery Across India</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="products" class="products">
+            <div class="container">
+                <h2 class="section-title">Our Premium Products</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="walnut.png" alt="Kashmiri Walnuts" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">Kashmiri Walnuts</h3>
+                            <p class="product-price">₹500/kg</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="almond.jpg" alt="Premium Almonds" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">Premium Almonds</h3>
+                            <p class="product-price">₹700/kg</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="honey.jpg" alt="Pure Kashmiri Honey" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">Pure Kashmiri Honey</h3>
+                            <p class="product-price">₹400/500g</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="kesar.png" alt="Pure Kesar (Saffron)" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">Pure Kesar (Saffron)</h3>
+                            <p class="product-price">₹3000/10g</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="shilagit.jpg" alt="Shilajit" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">Pure Shilajit</h3>
+                            <p class="product-price">₹1500/50g</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="apricot.jpg" alt="Kashmiri Apricots" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">Kashmiri Apricots</h3>
+                            <p class="product-price">₹600/kg</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About KMR Dry Fruits</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>KMR Dry Fruits is a family-owned business based in the heart of Kashmir, specializing in premium quality dry fruits and natural products straight from the valleys of Kashmir.</p>
+                        <p>With decades of experience in sourcing the finest produce, we take pride in delivering authentic, high-quality dry fruits to your doorstep. Our products are carefully selected, handpicked, and packed to preserve their natural goodness.</p>
+                        <p>We believe in purity, quality, and customer satisfaction above all else. When you choose KMR Dry Fruits, you're choosing the very best that nature has to offer.</p>
+                    </div>
+                    <div class="about-img">
+                        <img src="home.png" alt="About KMR Dry Fruits">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>KMR Dry Fruits</h3>
+                    <p>Premium quality dry fruits and natural products from the valleys of Kashmir.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <address>
+                        Dalgate, Srinagar<br>
+                        Kashmir, India
+                    </address>
+                    <p>Phone: 8920861252</p>
+                    <p>Email: kmrdryfruits@gmail.com</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Business Hours</h3>
+                    <p>Monday - Saturday: 9am - 8pm</p>
+                    <p>Sunday: 10am - 6pm</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 KMR Dry Fruits. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple slider functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliderImages = document.querySelectorAll('.slider-img');
+            let currentIndex = 0;
+            
+            function showNextImage() {
+                sliderImages[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % sliderImages.length;
+                sliderImages[currentIndex].classList.add('active');
+            }
+            
+            // Change image every 5 seconds
+            setInterval(showNextImage, 5000);
+        });
+    </script>
+    
+    <!-- Font Awesome for icons (you can host this locally for better performance) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </body>
 </html>
